@@ -26,19 +26,40 @@ const App = props => {
     })
   }
 
-  console.log(personsState)
+  const nameChangedHandler = (event) => {
+    setPersonsState({
+      persons: [
+        { name: "Chad", age: 33 },
+        { name: event.target.value, age: 77 },
+        { name: "Sarah", age: 30 }
+      ]
+    })
+  }
+
+  const style = {
+    backgroundColor: 'white',
+    font: 'inherit',
+    border: '1px solid blue',
+    padding: '8px',
+    cursor: 'pointer'
+  }
   
   return (
     <div className="App">
       <h1>-- React App --</h1>
-      <button onClick={switchNameHandler.bind(personsState, "Chad")}>Switch Name</button>
+      <button 
+        style={style}
+        onClick={switchNameHandler.bind(personsState, "Chad")}>
+          Switch Name
+      </button>
       <Person 
         name={personsState.persons[0].name} 
         age={personsState.persons[0].age} />
       <Person 
         name={personsState.persons[1].name} 
         age={personsState.persons[1].age}
-        click={switchNameHandler.bind(personsState, "Chad!")} >My Hobbies: Whiskey
+        click={switchNameHandler.bind(personsState, "Chad!")}
+        changed={nameChangedHandler} >My Hobbies: Whiskey
       </Person>
       <Person 
         name={personsState.persons[2].name} 
